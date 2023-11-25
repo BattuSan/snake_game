@@ -1,5 +1,11 @@
 from turtle import Turtle
 
+MOVE = 20
+UP = 90
+DOWN = 270
+LEFT = 180
+RIGHT = 0
+
 
 class Snake:
 
@@ -7,6 +13,7 @@ class Snake:
         self.snake_box = []
         self.position = 0
         self.create_snake()
+        self.head = self.snake_box[0]
 
     def create_snake(self):
         for _ in range(3):
@@ -15,24 +22,26 @@ class Snake:
             turtle.color("white")
             turtle.penup()
             turtle.goto(self.position, 0)
-            self.position -= 20
+            self.position -= MOVE
             self.snake_box.append(turtle)
 
     def move(self):
-        for i in range(len(self.snake_box)-1, 0, -1):
-            new_x = self.snake_box[i-1].xcor()
-            new_y = self.snake_box[i-1].ycor()
+        for i in range(len(self.snake_box) - 1, 0, -1):
+            new_x = self.snake_box[i - 1].xcor()
+            new_y = self.snake_box[i - 1].ycor()
             self.snake_box[i].goto(new_x, new_y)
-        self.snake_box[0].forward(20)
+        self.head.forward(MOVE)
 
     def up(self):
-        self.snake_box[0].setheading(90)
+        if self.head.heading() != DOWN:
+            self.head.setheading(UP)
 
     def down(self):
-        self.snake_box[0].setheading(270)
+        if self.head.heading() != UP:
+            self.head.setheading(DOWN)
 
     def left(self):
-        self.snake_box[0].setheading(180)
+        self.head.setheading(LEFT)
 
     def right(self):
-        self.snake_box[0].setheading(0)
+        self.head.setheading(RIGHT)
