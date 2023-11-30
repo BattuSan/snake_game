@@ -14,4 +14,8 @@ class Scores(Turtle):
 
     def display_score(self):
         self.clear()
-        self.write(arg=f"Score: {self.score}", align="center", font=("Arial", 30, "normal"))
+        self.write(arg=f"Score: {self.score}", align="center", font=("Courier", 30, "normal"))
+
+    def game_over(self):
+        self.goto(0, 0)
+        self.write(arg=f"GAME OVER", align="center", font=("Courier", 30, "normal"))
