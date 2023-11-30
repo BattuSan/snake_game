@@ -13,6 +13,7 @@ class Snake:
         self.snake_box = []
         self.position = 0
         self.create_snake()
+        self.no_of_bodies = 0
         self.head = self.snake_box[0]
 
     def create_snake(self):
@@ -24,6 +25,14 @@ class Snake:
             turtle.goto(self.position, 0)
             self.position -= MOVE
             self.snake_box.append(turtle)
+
+    def add_body(self):
+        turtle = Turtle()
+        turtle.shape("square")
+        turtle.color("White")
+        turtle.penup()
+        turtle.goto(self.snake_box[-1].xcor(), self.snake_box[-1].ycor())
+        self.snake_box.append(turtle)
 
     def move(self):
         for i in range(len(self.snake_box) - 1, 0, -1):

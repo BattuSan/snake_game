@@ -31,12 +31,18 @@ while game_is_on:
         # score_board
         score_game.score += 1
         score_game.display_score()
-        print(snake.head.xcor())
-        print(snake.head.ycor)
-        # wall collision detection
-    if snake.head.xcor() > 280 or snake.head.xcor() < -280 or snake.head.ycor() > 280 or snake.head.ycor() < -280:
+        snake.add_body()
+    # wall collision detection
+    if snake.head.xcor() > 290 or snake.head.xcor() < -290 or snake.head.ycor() > 290 or snake.head.ycor() < -290:
         score_game.game_over()
         game_is_on = False
 
+    # tail collision detection
+    for tail_part in snake.snake_box:
+        if tail_part == snake.head:
+            pass
+        elif snake.head.distance(tail_part) < 10:
+            score_game.game_over()
+            game_is_on = False
 
 screen.exitonclick()
